@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock By Abhay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: wheat;
+}
+#container{
+    background-color: darkslategrey;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+#inner_circle{
+    top: 0%;
+    left: 25%;
+    transform: translate(50%, 50%);
+    position: absolute;
+    height: 345px;
+    width: 345px;
+    border-radius: 50%;
+    outline-offset: 10px;
+    box-shadow: 5px 5px 15px #220a1c;
+    outline-color: rgb(63, 123, 123) ;
+    outline: 2px solid;
+    outline-offset: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#inner_circle::before{
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 1;
+}
+.box{
+    transform: rotate(calc(30deg * var(--j)));
+    inset: 10px;
+    position: absolute;
+    font-size: 1.5rem;
+    color: antiquewhite;
+}
+.box b{
+    transform: rotate(calc(-30deg * var(--j)));
+    display: inline-block;
+}
+.hand{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.hand i{
+    position: absolute;
+    background-color: var(--clr);
+    height: var(--ht);
+    width: var(--wt);
+    z-index: 0;
+}
+#second i{
+    position: absolute;
+    background-color: var(--clr);
+    height: var(--hts);
+    width: var(--wts);
+    z-index: 0;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+h2{
+    margin-top: 180px;
+    color: transparent;
+    -webkit-text-stroke: 0.3pt #fffa;
+}
+</style>
+<body>
+    <div id="main">
+        <div id="container">
+            <div id="circle">
+                <div id="inner_circle">
+                    <div><h2>Create By Abhay</h2></div>
+                    <div style="--clr:rgb(253, 113, 113); --ht:80px; --wt:8px;" class="hand" id="hour"><i></i></div>
+                    <div style="--clr:rgb(148, 136, 255); --ht:100px; --wt:6px;" class="hand" id="minute"><i></i></div>
+                    <div style="--clr:rgb(255, 255, 255); --hts:120px; --wts:4px;"  class="hand" id="second"><i></i></div>
+                    <div class="box" id="box1" style="--j:1"><b>1</b></div>
+                    <div class="box" id="box2" style="--j:2"><b>2</b></div>
+                    <div class="box" id="box3" style="--j:3"><b>3</b></div>
+                    <div class="box" id="box4" style="--j:4"><b>4</b></div>
+                    <div class="box" id="box5" style="--j:5"><b>5</b></div>
+                    <div class="box" id="box6" style="--j:6"><b>6</b></div>
+                    <div class="box" id="box7" style="--j:7"><b>7</b></div>
+                    <div class="box" id="box8" style="--j:8"><b>8</b></div>
+                    <div class="box" id="box9" style="--j:9"><b>9</b></div>
+                    <div class="box" id="box10" style="--j:10"><b>10</b></div>
+                    <div class="box" id="box11" style="--j:11"><b>11</b></div>
+                    <div class="box" id="box12" style="--j:12"><b>12</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let hour = document.getElementById('hour');
+    let minute = document.getElementById('minute');
+    let second = document.getElementById('second');
+
+
+    function displayTime(){
+        let date = new Date();
+
+        let hh = date.getHours();
+        let mm = date.getMinutes();
+        let ss = date.getSeconds();
+
+        let hRe = 30 * hh + mm/2 + ss/120;
+        let mRe = 6 * mm + ss/120;
+        let sRe = 6 * ss;
+
+        hour.style.transform = `rotate(${hRe}deg)`;
+        minute.style.transform = `rotate(${mRe}deg)`;
+        second.style.transform = `rotate(${sRe}deg)`;
+
+    }
+    setInterval(displayTime, 1000);
+</script>
+</html>
